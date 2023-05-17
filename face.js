@@ -61,15 +61,15 @@ function Face() {
     //nose
     push()
     let nose_pos = segment_average(positions.nose_bridge);
-    let nose_length = segment_average(positions.nose_tip);
+    let nose_lengths = segment_average(positions.nose_tip);
     angleMode(DEGREES);
     fill(this.noseColour);
     stroke(this.noseColour);
     // this.draw_segment(positions.nose_bridge);
     // this.draw_segment(positions.nose_tip);
-    arc(nose_pos, nose_pos,nose_length,1,0,180)
+    arc(nose_pos, nose_pos,nose_lengths,2,0,180)
     pop()
-
+    
     // mouth
     fill(this.detailColour);
     rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size,4,4,4,4);
@@ -172,14 +172,16 @@ function Face() {
     this.num_eyes = int(map(settings[0], 0, 100, 1, 2));
     this.eye_shift = map(settings[1], 0, 100, -2, 2);
     this.mouth_size = map(settings[2], 0, 100, 0.5, 2);
+    this.nose_length = map(settings[3], 0, 100, 0.5, 2);
   }
 
   /* get internal properties as list of numbers 0-100 */
   this.getProperties = function() {
-    let settings = new Array(3);
+    let settings = new Array(4);
     settings[0] = map(this.num_eyes, 1, 2, 0, 100);
     settings[1] = map(this.eye_shift, -2, 2, 0, 100);
     settings[2] = map(this.mouth_size, 0.5, 2, 0, 100);
+    settings[3] = map(this.nose_length, 0.5, 2, 0, 100);
     return settings;
   }
 }
