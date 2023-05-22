@@ -51,23 +51,41 @@ function Face() {
    */  
   this.draw = function(positions) {
     console.log()
+    //cup holder
+    let cupholder = segment_average(positions.top_lip);
+    push()
+    stroke(255);
+    strokeWeight(0.2);
+    noFill();
+    rect(cupholder[0]-0.6,cupholder[1]-2,4, 2, 0.1,4,4,4,4)
+    pop()
+
+    // line under cup
+    push()
+    stroke(this.mainColour)
+    strokeWeight(0.6)
+    line(positions.chin[4][0],positions.chin[8][1],positions.chin[12][0], positions.chin[8][1])
+    pop()
+
+
     // head
     rectMode(CENTER);
-    stroke(stroke_color);
+    noStroke();
     fill(this.mainColour);
     rect(segment_average(positions.chin)[0], 0, 4, 4,0.5,0.5,20,20);
-    noStroke();
 
     //nose
     push()
-    let nose_pos = segment_average(positions.nose_bridge);
-    let nose_lengths = segment_average(positions.nose_tip);
+    // let nose_b = segment_average(positions.nose_bridge);
+    let nose_t = segment_average(positions.nose_tip);  
     angleMode(DEGREES);
     fill(this.noseColour);
     stroke(this.noseColour);
-    // this.draw_segment(positions.nose_bridge);
-    // this.draw_segment(positions.nose_tip);
-    arc(nose_pos, nose_pos,nose_lengths,2,0,180)
+    ellipse(nose_t[0], nose_t[1]-0.3,0.85,0.8);
+    // ellipse(positions.nose_bridge[3][0],positions.nose_bridge[3][1],0.7,0.7);
+      triangle(positions.nose_tip[0][0],positions.nose_bridge[2][1],positions.nose_tip[2][0],  positions.nose_bridge[0][1],positions.nose_tip[4][0],positions.nose_bridge[2][1]);
+
+    // triangle(nose_b[0]+0.1,nose_b[1]-0.2,nose_t[0]-0.29, nose_t[1],nose_b[0]+0.2,nose_b[1]+0.5)
     pop()
     
     // mouth
@@ -86,10 +104,9 @@ function Face() {
     // this.draw_segment(positions.top_lip);
     // this.draw_segment(positions.bottom_lip);
 
+    // eyes
     let left_eye_pos = segment_average(positions.left_eye);
     let right_eye_pos = segment_average(positions.right_eye);
-
-    // eyes
     noStroke();
     let curEyeShift = 0.04 * this.eye_shift;
     if(this.num_eyes == 2) {
@@ -145,6 +162,8 @@ function Face() {
         rect(eyebrowPosX,eyebrowPosY, 2, 0.6, 0.1,4,4,4,4);
         rect(eyebrowPosX,eyebrowPosY, 2, 0.6, 0.1,4,4,4,4);
       }
+
+
   }
 
   // example of a function *inside* the face object.
@@ -172,7 +191,7 @@ function Face() {
     this.num_eyes = int(map(settings[0], 0, 100, 1, 2));
     this.eye_shift = map(settings[1], 0, 100, -2, 2);
     this.mouth_size = map(settings[2], 0, 100, 0.5, 2);
-    this.nose_length = map(settings[3], 0, 100, 0.5, 2);
+    // this.nose_length = map(settings[3], 0, 100, 0.5, 2);
   }
 
   /* get internal properties as list of numbers 0-100 */
@@ -181,7 +200,7 @@ function Face() {
     settings[0] = map(this.num_eyes, 1, 2, 0, 100);
     settings[1] = map(this.eye_shift, -2, 2, 0, 100);
     settings[2] = map(this.mouth_size, 0.5, 2, 0, 100);
-    settings[3] = map(this.nose_length, 0.5, 2, 0, 100);
+    // settings[3] = map(this.nose_length, 0.5, 2, 0, 100);
     return settings;
   }
 }
