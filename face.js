@@ -36,7 +36,6 @@ function Face() {
   this.eyecolour = 2;
   this.curvecolour = 2;
   this.holdercolour = 2;
-  this.detailColour = [255];
   this.mainColour = [150, 35, 250];
   this.num_eyes = 2;    
   this.eye_shift = -1;   // range is -10 to 10
@@ -68,7 +67,7 @@ function Face() {
     this.cupholder = segment_average(positions.top_lip);
     push()
     stroke(this.white);
-    strokeWeight(0.2);
+    strokeWeight(0.3);
     noFill();
     rect(this.cupholder[0]-0.6,this.cupholder[1]-2,4, 2, 0.1,4,4,4,4)
     pop()
@@ -76,7 +75,7 @@ function Face() {
       this.cupholder = segment_average(positions.top_lip);
       push()
       stroke(this.black);
-      strokeWeight(0.2);
+      strokeWeight(0.3);
       noFill();
       rect(this.cupholder[0]-0.6,this.cupholder[1]-2,4, 2, 0.1,4,4,4,4)
       pop()
@@ -138,7 +137,7 @@ function Face() {
 
     }else{
       push()
-      fill(this.detailColour);
+      fill(this.white);
     rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size,4,4,4,4);
     pop()
 
@@ -163,34 +162,22 @@ function Face() {
       fill(this.eyeballColour);
       ellipse(eyePosX - 0.65 + curEyeShift, left_eye_pos[1], 0.5, 0.5);
       ellipse(eyePosX + 0.8 + curEyeShift, right_eye_pos[1], 0.5, 0.5);
-
-      // fill(this.mainColour);
-      // ellipse(left_eye_pos[0] + curEyeShift, left_eye_pos[1], 0.18);
-      // ellipse(right_eye_pos[0] + curEyeShift, right_eye_pos[1], 0.18);
-    
-   // fill(0)
-   //ellipse(0,0, 0.5,0.5) center point
-   //rect(-2,-2,4.5,4) sizing debug 
-
+      
+       // eyebrows
    let left_eyebrow_pos = segment_average(positions.left_eyebrow);
    let right_eyebrow_pos = segment_average(positions.right_eyebrow);
-       // eyebrows
+
         fill( this.eyebrowColour);
         stroke( this.eyebrowColour);
         strokeWeight(0.1);
-        // this.draw_segment(positions.left_eyebrow);
-        // this.draw_segment(positions.right_eyebrow);
         rect(left_eyebrow_pos[0],left_eyebrow_pos[1], 2, 0.6, 0.1,4,4,4,4);
         rect(right_eyebrow_pos[0],right_eyebrow_pos[1], 2, 0.6, 0.1,4,4,4,4);
-  
-        // fill(this.mainColour);
-        // ellipse(left_eye_pos[0] + curEyeShift, left_eye_pos[1], 0.18);
-        // ellipse(right_eye_pos[0] + curEyeShift, right_eye_pos[1], 0.18);
+
 
 //curve
 this.hotdrinkcolour
 if(this.curvecolour > 50){
-  this.hotdrinkcolour = this.detailColour ;
+  this.hotdrinkcolour = this.white ;
 }else{
   this.hotdrinkcolour = this.yellow ;
 }
