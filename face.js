@@ -53,6 +53,7 @@ function Face() {
   this.grey = [192,201,209]
   this.yellow = [245, 209, 66]
   this.white = [255]
+  this.brown = [145, 65, 15]
 
   /*
    * Draw the face with position lists that include:
@@ -131,8 +132,17 @@ function Face() {
 
     push()
     fill(this.grey);
-    rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.05 * this.mouth_size,4,4,4,4);
-    line(positions.top_lip[4][0],positions.top_lip[4][1],positions.bottom_lip[1][0],positions.bottom_lip[1][1]);
+   
+    noStroke()
+    
+    rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.05 * this.mouth_size,4,4,4,4); // ------- 
+    scale(0.4);
+    stroke(this.grey)
+    strokeWeight(0.2)
+
+    line(positions.top_lip[10][0],(positions.top_lip[10][1])+1.75, positions.top_lip[10][0], (positions.top_lip[10][1])+1.2)
+    line((positions.top_lip[10][0])+1,(positions.top_lip[10][1])+1.75, (positions.top_lip[10][0])+1, (positions.top_lip[10][1])+1.2)
+    //this.draw_segment(positions.top_lip)
     pop()
 
     }else{
@@ -142,7 +152,7 @@ function Face() {
     pop()
 
   }
-
+  //console.log(positions.top_lip.length)
     // eyes
     this.eyeballColour
     if(this.eyecolour > 50){
@@ -177,7 +187,7 @@ function Face() {
 //curve
 this.hotdrinkcolour
 if(this.curvecolour > 50){
-  this.hotdrinkcolour = this.white ;
+  this.hotdrinkcolour = this.brown ;
 }else{
   this.hotdrinkcolour = this.yellow ;
 }
@@ -218,23 +228,24 @@ pop()
 
   // example of a function *inside* the face object.
   // this draws a segment, and do_loop will connect the ends if true
-  this.draw_segment = function(segment, do_loop) {
-    for(let i=0; i<segment.length; i++) {
-        let px = segment[i][0];
-        let py = segment[i][1];
-        ellipse(px, py, 0.1);
-        if(i < segment.length - 1) {
-          let nx = segment[i+1][0];
-          let ny = segment[i+1][1];
-          line(px, py, nx, ny);
-        }
-        else if(do_loop) {
-          let nx = segment[0][0];
-          let ny = segment[0][1];
-          line(px, py, nx, ny);
-        }
-    }
-  };
+  // this.draw_segment = function(segment, do_loop) {
+  //   for(let i=0; i<segment.length; i++) {
+  //       let px = segment[i][0];
+  //       let py = segment[i][1];
+  //       ellipse(px, py, 0.05);
+
+  //       // if(i < segment.length - 1) {
+  //       //   let nx = segment[i+1][0];
+  //       //   let ny = segment[i+1][1];
+  //       //   line(px, py, nx, ny);
+  //       // }
+  //       // else if(do_loop) {
+  //       //   let nx = segment[0][0];
+  //       //   let ny = segment[0][1];
+  //       //   line(px, py, nx, ny);
+  //       // }
+  //   }
+  // };
 
   /* set internal properties based on list numbers 0-100 */
   this.setProperties = function(settings) {
