@@ -112,35 +112,31 @@ function Face() {
     //nose
     let nose_t = segment_average(positions.nose_tip);  
     push()
-    // let nose_b = segment_average(positions.nose_bridge);
     angleMode(DEGREES);
     scale(0.8);
     fill(this.noseColour);
     stroke(this.noseColour);
     ellipse(nose_t[0], nose_t[1]-0.3,0.9,0.9);
-    // ellipse(positions.nose_bridge[3][0],positions.nose_bridge[3][1],0.7,0.7);
       triangle(positions.nose_tip[0][0],positions.nose_bridge[2][1],positions.nose_tip[2][0],  positions.nose_bridge[0][1],positions.nose_tip[4][0],positions.nose_bridge[2][1]);
-
-    // triangle(nose_b[0]+0.1,nose_b[1]-0.2,nose_t[0]-0.29, nose_t[1],nose_b[0]+0.2,nose_b[1]+0.5)
     pop()
     
     // mouth
     if(this.mouth_size == 2){
 
     fill(this.white);
-    rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.2 * this.mouth_size,4,4,4,4);
+    rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.2 * this.mouth_size,4);
 
     push()
     fill(this.grey);
    
     noStroke()
     
-    rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.05 * this.mouth_size,4,4,4,4); // ------- 
+    rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.05 * this.mouth_size,4); // ------- 
     scale(0.4);
     stroke(this.grey)
     strokeWeight(0.2)
 
-    line(positions.top_lip[10][0],(positions.top_lip[10][1])+1.75, positions.top_lip[10][0], (positions.top_lip[10][1])+1.2)
+    line((positions.top_lip[10][0])-0.5,(positions.top_lip[10][1])+1.75,(positions.top_lip[10][0])-0.5, (positions.top_lip[10][1])+1.2)
     line((positions.top_lip[10][0])+1,(positions.top_lip[10][1])+1.75, (positions.top_lip[10][0])+1, (positions.top_lip[10][1])+1.2)
     //this.draw_segment(positions.top_lip)
     pop()
@@ -152,7 +148,7 @@ function Face() {
     pop()
 
   }
-  //console.log(positions.top_lip.length)
+
     // eyes
     this.eyeballColour
     if(this.eyecolour > 50){
