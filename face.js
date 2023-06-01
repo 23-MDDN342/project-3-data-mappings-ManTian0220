@@ -4,7 +4,7 @@
  */  
 
 // remove this or set to false to enable full program (load will be slower)
-var DEBUG_MODE = false;
+var DEBUG_MODE = true;
 
 // this can be used to set the number of sliders to show
 var NUM_SLIDERS = 7;
@@ -70,7 +70,7 @@ function Face() {
     stroke(this.white);
     strokeWeight(0.3);
     noFill();
-    rect(this.cupholder[0]-0.6,this.cupholder[1]-2,4, 2, 0.1,4,4,4,4)
+    rect(this.cupholder[0]-0.6,this.cupholder[1]-2,4, 2, 0.1,4)
     pop()
     }else{
       this.cupholder = segment_average(positions.top_lip);
@@ -78,7 +78,7 @@ function Face() {
       stroke(this.black);
       strokeWeight(0.3);
       noFill();
-      rect(this.cupholder[0]-0.6,this.cupholder[1]-2,4, 2, 0.1,4,4,4,4)
+      rect(this.cupholder[0]-0.6,this.cupholder[1]-2,4, 2, 0.1,4)
       pop()
     }
 
@@ -144,7 +144,7 @@ function Face() {
     }else{
       push()
       fill(this.white);
-    rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size,4,4,4,4);
+    rect(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size,4);
     pop()
 
   }
@@ -176,8 +176,8 @@ function Face() {
         fill( this.eyebrowColour);
         stroke( this.eyebrowColour);
         strokeWeight(0.1);
-        rect(left_eyebrow_pos[0],left_eyebrow_pos[1], 2, 0.6, 0.1,4,4,4,4);
-        rect(right_eyebrow_pos[0],right_eyebrow_pos[1], 2, 0.6, 0.1,4,4,4,4);
+        rect(left_eyebrow_pos[0],left_eyebrow_pos[1], 2, 0.6, 0.1,4);
+        rect(right_eyebrow_pos[0],right_eyebrow_pos[1], 2, 0.6, 0.1,4);
 
 
 //curve
@@ -221,27 +221,6 @@ endShape()
 pop()
 }
 }
-
-  // example of a function *inside* the face object.
-  // this draws a segment, and do_loop will connect the ends if true
-  // this.draw_segment = function(segment, do_loop) {
-  //   for(let i=0; i<segment.length; i++) {
-  //       let px = segment[i][0];
-  //       let py = segment[i][1];
-  //       ellipse(px, py, 0.05);
-
-  //       // if(i < segment.length - 1) {
-  //       //   let nx = segment[i+1][0];
-  //       //   let ny = segment[i+1][1];
-  //       //   line(px, py, nx, ny);
-  //       // }
-  //       // else if(do_loop) {
-  //       //   let nx = segment[0][0];
-  //       //   let ny = segment[0][1];
-  //       //   line(px, py, nx, ny);
-  //       // }
-  //   }
-  // };
 
   /* set internal properties based on list numbers 0-100 */
   this.setProperties = function(settings) {
