@@ -4,7 +4,7 @@
  */  
 
 // remove this or set to false to enable full program (load will be slower)
-var DEBUG_MODE = true;
+var DEBUG_MODE = false;
 
 // this can be used to set the number of sliders to show
 var NUM_SLIDERS = 7;
@@ -36,15 +36,11 @@ function Face() {
   this.eyecolour = 2;
   this.curvecolour = 2;
   this.holdercolour = 2;
-  this.mainColour = [150, 35, 250];
   this.num_eyes = 2;    
   this.eye_shift = -1;   // range is -10 to 10
   this.mouth_size = 1;  // range is 0.5 to 8
 
-  this.chinColour = [153, 153, 51]// purple
-  this.lipColour = [136, 68, 68]
   this.eyebrowColour = [0]
-
   this.noseColour = [216, 122, 245]
   this.purple = [150, 35, 250]
   this.pink = [235,103,217]
